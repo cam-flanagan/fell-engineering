@@ -11,15 +11,16 @@ import { asText } from "@prismicio/client";
 
 type Params = { uid: string };
 
-export default async function Page({ params }: { params: Params }) {
+export default async function Page({ params }: { params: Promise<Params> }) {
+  const { uid } = await params;
   const client = createClient();
   const page = await client
-    .getByUID("case_study", params.uid)
+    .getByUID("case_study", uid)
     .catch(() => notFound());
 
   return (
     <Bounded as="article">
-      <div className="relative grid place-items-center text-center">
+      <div className="rounded-2xl border-2 border-slate-800 bg-slate-900 px-4 py-10 md:px-8 md:py-20">
         <StarGrid />
         <h1 className="text-7xl font-medium">
           <PrismicText field={page.data.company} />
@@ -44,11 +45,12 @@ export default async function Page({ params }: { params: Params }) {
 export async function generateMetadata({
   params,
 }: {
-  params: Params;
+  params: Promise<Params>;
 }): Promise<Metadata> {
+  const { uid } = await params;
   const client = createClient();
   const page = await client
-    .getByUID("case_study", params.uid)
+    .getByUID("case_study", uid)
     .catch(() => notFound());
 
   return {
