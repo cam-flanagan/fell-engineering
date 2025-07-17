@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicText, SliceComponentProps } from "@prismicio/react";
-import PlainLogo from "./PlainLogo";
+//import PlainLogo from "./PlainLogo";
+import FellLogo from "@/app/assets/FellEngineeringLogo.svg";
 import Bounded from "@/components/Bounded";
 import ButtonLink from "@/components/ButtonLink";
 
@@ -22,7 +23,7 @@ const CallToAction: FC<CallToActionProps> = ({ slice }) => {
     >
       <div className="glow absolute -z-10 aspect-square w-full max-w-sm rounded-full bg-blue-500/50 blur-[160px] filter"/>
       <div className="glass-container rounded-lg bg-gradient-to-b from-slate-800 to-slate-900 p-4 md-rounded-xl">
-        <PlainLogo />
+        <FellLogo className="w-40 h-40 fill-white" />
       </div>
       <div className="text-balance mt-8 max-w-xl text-5xl">
         <PrismicText field={slice.primary.heading} />
