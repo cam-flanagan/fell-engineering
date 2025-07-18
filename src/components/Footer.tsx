@@ -1,7 +1,7 @@
-import WordMark from "@/components/WordMark";
 import { createClient } from "@/prismicio";
 import { PrismicNextLink } from "@prismicio/next";
 import Link from "next/link";
+import FellLogo from "@/app/assets/file.svg";
 
 export default async function Footer() {
   const client = createClient();
@@ -10,8 +10,11 @@ export default async function Footer() {
 
   return (
     <footer className="flex flex-col items-center justify-between gap-6 border-t border-slate-600 px-8 py-7 md:flex-row">
-      <Link href="/">
-        <WordMark />
+      <Link href="/" className="flex items-center gap-3">
+        <FellLogo className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24" />
+        <span className="text-xl sm:text-xl md:text-2xl font-bold text-white">
+          Fell Engineering
+        </span>
         <span className="sr-only">Fell Engineering Home Page</span>
       </Link>
       <nav aria-label="Footer">

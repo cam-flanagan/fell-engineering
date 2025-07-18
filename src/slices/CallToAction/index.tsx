@@ -1,8 +1,7 @@
 import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicText, SliceComponentProps } from "@prismicio/react";
-//import PlainLogo from "./PlainLogo";
-import FellLogo from "@/app/assets/FellEngineeringLogo.svg";
+import FellLogo from "@/app/assets/FellEngineeringTextLogo.svg";
 import Bounded from "@/components/Bounded";
 import ButtonLink from "@/components/ButtonLink";
 

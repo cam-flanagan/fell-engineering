@@ -5,7 +5,7 @@ import { asLink, Content } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import Link from "next/link";
 import ButtonLink from "@/components/ButtonLink";
-import WordMark from "@/components/WordMark";
+import FellLogo from "@/app/assets/file.svg";
 import { MdClose, MdMenu } from "react-icons/md";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
@@ -23,9 +23,12 @@ export default function NavBar({ settings }: NavBarProps) {
         <div className="mx-auto flex max-w-6xl flex-col justify-between py-2 font-medium text-white md:flex-row md:items-center">
           <div className="flex items-center justify-between">
 
-            <Link href="/" className="z-50" onClick={() => setOpen(false)}>
-              <WordMark />
-              <span className="sr-only">Fell Engineering Home Page</span>
+            <Link href="/" className="z-50 flex items-center gap-3" onClick={() => setOpen(false)}>
+              <FellLogo className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24" />
+                <span className="text-xl sm:text-xl md:text-2xl font-bold text-white">
+                  Fell Engineering
+                </span>
+                <span className="sr-only">Fell Engineering Home Page</span>
             </Link>
 
             <button type="button" className="block p-2 text-3xl text-white md:hidden"
