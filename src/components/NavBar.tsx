@@ -24,8 +24,8 @@ export default function NavBar({ settings }: NavBarProps) {
           <div className="flex items-center justify-between">
 
             <Link href="/" className="z-50 flex items-center gap-3" onClick={() => setOpen(false)}>
-              <FellLogo className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24" />
-                <span className="text-xl sm:text-xl md:text-2xl font-bold text-white">
+              <FellLogo className="w-16 h-16" />
+                <span className="text-xl sm:text-xl md:text-2xl text-white">
                   Fell Engineering
                 </span>
                 <span className="sr-only">Fell Engineering Home Page</span>
