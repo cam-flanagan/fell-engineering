@@ -1,8 +1,10 @@
-import { FC } from "react";
+"use client";
+
+import { FC, useState } from "react";
 import { asText, Content } from "@prismicio/client";
 import { PrismicRichText, PrismicText, SliceComponentProps } from "@prismicio/react";
-import { PrismicNextImage } from "@prismicio/next";
 import Bounded from "@/components/Bounded";
+import Button from "@/components/Button";
 import clsx from "clsx";
 
 /**
@@ -14,6 +16,18 @@ export type BentoProps = SliceComponentProps<Content.BentoSlice>;
  * Component for "Bento" Slices.
  */
 const Bento: FC<BentoProps> = ({ slice }) => {
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+
+  const toggleExpanded = (itemKey: string) => {
+    const newExpanded = new Set(expandedItems);
+    if (newExpanded.has(itemKey)) {
+      newExpanded.delete(itemKey);
+    } else {
+      newExpanded.add(itemKey);
+    }
+    setExpandedItems(newExpanded);
+  };
+
   return (
     <Bounded
       data-slice-type={slice.slice_type}
@@ -37,22 +51,43 @@ const Bento: FC<BentoProps> = ({ slice }) => {
         <PrismicRichText field={slice.primary.body} />
       </div>
 
-      <div className="mt-16 grid max-w-4xl gr-rows-[auto_auto_auto] gap-8 md:grid-cols-3 md:gap-10">
-        {slice.primary.bento.map((item) => (
-          <div className={ clsx("glass-container row-span-3 grid grid-rows-subgrid gap-4 rounded-lg bg-gradient-to-b from-gray-900 to-gray-950 p-4", item.wide ? "md:col-span-2": "md:-col-span-1")} key={asText(item.title)}>
-            
-            <h3 className="text-2xl">
-              <PrismicText field={item.title} />
-            </h3>
+      <div className="mt-16 grid gap-8 md:grid-cols-3 lg:grid-cols-3">
+        {slice.primary.bento.map((item) => {
+          const itemKey = asText(item.title);
+          const isExpanded = expandedItems.has(itemKey);
+          
+          return (
+            <div 
+              className={clsx(
+                "glass-container rounded-lg bg-gradient-to-b from-gray-900 to-gray-950 p-6 transition-all duration-300",
+                isExpanded ? "md:col-span-3 lg:col-span-3 w-full" : "w-full"
+              )} 
+              key={itemKey}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-2xl">
+                  <PrismicText field={item.title} />
+                </h3>
+                
+                <Button
+                  onClick={() => toggleExpanded(itemKey)}
+                >
+                  {isExpanded ? "Collapse" : "Expand"}
+                </Button>
+              </div>
 
-            <div className="max--md text-balance text-slate-300">
-              <PrismicRichText field={item.body} />
+              <div className={clsx(
+                "relative text-balance text-slate-300 transition-all duration-300",
+                isExpanded ? "max-w-none" : "overflow-hidden max-h-20"
+              )}>
+                <PrismicRichText field={item.body} />
+                {!isExpanded && (
+                  <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-950 to-transparent pointer-events-none" />
+                )}
+              </div>
             </div>
-
-            <PrismicNextImage field={item.image} 
-            className="max-h-36 w-auto"/>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </Bounded>
   );
