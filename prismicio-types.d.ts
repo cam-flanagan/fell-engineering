@@ -786,7 +786,7 @@ export interface ShowcaseSliceReversePrimary {
    * - **API ID Path**: showcase.reverse.primary.icon
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  icon: prismic.SelectField<"gear" | "cycle">;
+  icon: prismic.SelectField<"electric" | "cycle" | "gear">;
 
   /**
    * Subheading field in *Showcase → Reverse → Primary*
