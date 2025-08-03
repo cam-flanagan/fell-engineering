@@ -27,9 +27,9 @@
             "label": "Icon",
             "placeholder": "",
             "options": [
-              "gear",
+              "electric",
               "cycle",
-              "electric"
+              "gear"
             ]
           }
         },

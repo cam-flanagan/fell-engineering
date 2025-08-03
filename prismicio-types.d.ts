@@ -702,7 +702,7 @@ export interface ShowcaseSliceDefaultPrimary {
    * - **API ID Path**: showcase.default.primary.icon
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  icon: prismic.SelectField<"gear" | "cycle" | "electric">;
+  icon: prismic.SelectField<"electric" | "cycle" | "gear">;
 
   /**
    * Subheading field in *Showcase → Default → Primary*
