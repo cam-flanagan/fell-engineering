@@ -2,14 +2,14 @@ import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/components/Bounded";
-import { PrismicNextImage } from "@prismicio/next";
 import ButtonLink from "@/components/ButtonLink";
 import clsx from "clsx";
-import { PiArrowsClockwise, PiGear } from "react-icons/pi";
+import { PiArrowsClockwise, PiGear, PiLightningBold } from "react-icons/pi";
 
 const icons = {
   gear: <PiGear />,
   cycle: <PiArrowsClockwise />,
+  electric: <PiLightningBold />,
 };
 /**
  * Props for `Showcase`.
@@ -46,16 +46,30 @@ const Showcase: FC<ShowcaseProps> = ({ slice }) => {
           <div className="mt-4 max-w-xl prose prose-invert">
           <PrismicRichText field={slice.primary.body} />
           </div>
-
-          <ButtonLink field={slice.primary.buttonlink} className="mt-6">
-            {slice.primary.buttontext || "Learn More"}
-          </ButtonLink>
         </div>
-        <PrismicNextImage field={slice.primary.image} className={
-          clsx("opacity-90 shadow-2xl lg:col-span-2 lg:pt-0",
-          slice.variation === "reverse" ? "lg:order-1 lg:translate-x-[15%]" :
-          "lg:-order-1 lg:translate-x-[-15%]"
-          )}/>
+        <div
+          className={clsx(
+            "flex flex-col justify-center items-center bg-black text-white rounded-lg shadow-2xl lg:col-span-2 lg:pt-0 p-8 aspect-square w-full max-w-xl mx-auto",
+            slice.variation === "reverse" ? "lg:order-1 lg:translate-x-[25%]" :
+            "lg:-order-1 lg:translate-x-[-25%]"
+          )}
+        >
+          <form className="w-full max-w-sm space-y-4">
+            <input
+              type="text"
+              placeholder="First Field"
+              className="w-full px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            <input
+              type="text"
+              placeholder="Second Field"
+              className="w-full px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            <ButtonLink field={slice.primary.buttonlink} className="mt-6">
+              {slice.primary.buttontext || "Submit"}
+            </ButtonLink>
+          </form>
+        </div>
       </div>
 
     </Bounded>

@@ -21,14 +21,6 @@
             "multi": "heading2"
           }
         },
-        "image": {
-          "type": "Image",
-          "config": {
-            "label": "Image",
-            "constraint": {},
-            "thumbnails": []
-          }
-        },
         "icon": {
           "type": "Select",
           "config": {
@@ -36,7 +28,8 @@
             "placeholder": "",
             "options": [
               "gear",
-              "cycle"
+              "cycle",
+              "electric"
             ]
           }
         },
@@ -94,14 +87,6 @@
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "heading2"
-          }
-        },
-        "image": {
-          "type": "Image",
-          "config": {
-            "label": "Image",
-            "constraint": {},
-            "thumbnails": []
           }
         },
         "icon": {

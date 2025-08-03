@@ -695,16 +695,6 @@ export interface ShowcaseSliceDefaultPrimary {
   heading: prismic.RichTextField;
 
   /**
-   * Image field in *Showcase → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: showcase.default.primary.image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  image: prismic.ImageField<never>;
-
-  /**
    * Icon field in *Showcase → Default → Primary*
    *
    * - **Field Type**: Select
@@ -712,7 +702,7 @@ export interface ShowcaseSliceDefaultPrimary {
    * - **API ID Path**: showcase.default.primary.icon
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  icon: prismic.SelectField<"gear" | "cycle">;
+  icon: prismic.SelectField<"gear" | "cycle" | "electric">;
 
   /**
    * Subheading field in *Showcase → Default → Primary*
@@ -787,16 +777,6 @@ export interface ShowcaseSliceReversePrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   heading: prismic.RichTextField;
-
-  /**
-   * Image field in *Showcase → Reverse → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: showcase.reverse.primary.image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  image: prismic.ImageField<never>;
 
   /**
    * Icon field in *Showcase → Reverse → Primary*

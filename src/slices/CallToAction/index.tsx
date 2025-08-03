@@ -3,7 +3,6 @@ import { Content } from "@prismicio/client";
 import { PrismicText, SliceComponentProps } from "@prismicio/react";
 import FellLogo from "@/app/assets/FellEngineeringTextLogo.svg";
 import Bounded from "@/components/Bounded";
-import ButtonLink from "@/components/ButtonLink";
 
 /**
  * Props for `CallToAction`.
@@ -27,9 +26,6 @@ const CallToAction: FC<CallToActionProps> = ({ slice }) => {
       <div className="text-balance mt-8 max-w-xl text-5xl">
         <PrismicText field={slice.primary.heading} />
       </div>
-      <ButtonLink field={slice.primary.button_link} className="mt-6">
-        {slice.primary.button_text || "Learn More"}
-      </ButtonLink>
     </Bounded>
   );
 };
