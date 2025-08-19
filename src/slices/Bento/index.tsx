@@ -43,7 +43,6 @@ const Bento: FC<BentoProps> = ({ slice }) => {
           em: ({ children }) => (<em className="bg-gradient-to-b 
              from-yellow-100 to-yellow-500 bg-clip-text 
              not-italic text-transparent">{children}</em>),
-
         }
       }
       />
@@ -56,36 +55,60 @@ const Bento: FC<BentoProps> = ({ slice }) => {
         {slice.primary.bento.map((item) => {
           const itemKey = asText(item.title);
           const isExpanded = expandedItems.has(itemKey);
-          
+          const imageUrl = item.image?.url;
+          const imageAlt = item.image?.alt || '';
+
           return (
-            <div 
+            <div
               className={clsx(
                 "glass-container rounded-lg bg-gradient-to-b from-gray-900 to-gray-950 p-6 transition-all duration-300",
                 isExpanded ? "md:col-span-3 lg:col-span-3 w-full" : "w-full"
-              )} 
+              )}
               key={itemKey}
             >
+              {/* Header row: title only when expanded, title + button when collapsed */}
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-2xl">
                   <PrismicText field={item.title} />
                 </h3>
-                
-                <Button
-                  onClick={() => toggleExpanded(itemKey)}
-                >
-                  {isExpanded ? "Collapse" : "Expand"}
-                </Button>
-              </div>
-
-              <div className={clsx(
-                "relative text-balance text-slate-300 transition-all duration-300",
-                isExpanded ? "max-w-none" : "overflow-hidden max-h-20"
-              )}>
-                <PrismicRichText field={item.body} />
                 {!isExpanded && (
-                  <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-950 to-transparent pointer-events-none" />
+                  <Button onClick={() => toggleExpanded(itemKey)}>
+                    {"Expand"}
+                  </Button>
                 )}
               </div>
+
+              {isExpanded ? (
+                <>
+                  <div className="flex flex-col md:flex-row gap-6 items-start">
+                    <div className="flex-1 relative text-balance text-slate-300 transition-all duration-300">
+                      <PrismicRichText field={item.body} />
+                    </div>
+                    {imageUrl && (
+                      <div className="flex-shrink-0 w-full md:w-64 lg:w-80 flex justify-center items-start">
+                        <img
+                          src={imageUrl}
+                          alt={imageAlt}
+                          className="rounded-lg object-cover w-full h-auto max-h-64 shadow-lg"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="mt-8 flex justify-center w-full">
+                    <Button onClick={() => toggleExpanded(itemKey)}>
+                      Collapse
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <div className={clsx(
+                  "relative text-balance text-slate-300 transition-all duration-300",
+                  "overflow-hidden max-h-20"
+                )}>
+                  <PrismicRichText field={item.body} />
+                  <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-950 to-transparent pointer-events-none" />
+                </div>
+              )}
             </div>
           );
         })}
