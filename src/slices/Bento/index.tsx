@@ -29,6 +29,7 @@ const Bento: FC<BentoProps> = ({ slice }) => {
   };
 
   return (
+    <div id="bento">
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
@@ -90,6 +91,7 @@ const Bento: FC<BentoProps> = ({ slice }) => {
         })}
       </div>
     </Bounded>
+    </div>
   );
 };
 

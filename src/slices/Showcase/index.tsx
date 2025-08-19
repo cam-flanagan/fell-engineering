@@ -2,14 +2,15 @@ import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/components/Bounded";
+import { PrismicNextImage } from "@prismicio/next";
 import ButtonLink from "@/components/ButtonLink";
 import clsx from "clsx";
-import { PiArrowsClockwise, PiGear, PiLightningBold } from "react-icons/pi";
+import { PiArrowsClockwise, PiGear, PiPlug } from "react-icons/pi";
 
 const icons = {
   gear: <PiGear />,
   cycle: <PiArrowsClockwise />,
-  electric: <PiLightningBold />,
+  electric: <PiPlug />,
 };
 /**
  * Props for `Showcase`.
@@ -21,6 +22,7 @@ export type ShowcaseProps = SliceComponentProps<Content.ShowcaseSlice>;
  */
 const Showcase: FC<ShowcaseProps> = ({ slice }) => {
   return (
+    <div id="showcase">
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
@@ -33,9 +35,7 @@ const Showcase: FC<ShowcaseProps> = ({ slice }) => {
         heading2: ({ children }) => <h2 className="text-balance text-center -text-5x font-medium
         md:text-7xl">{children}</h2>
       }}/>
-      <div className="grid mt-16 items-center rounded-xl border border-blue-50/20
-      bg-gradient-to-b from-slate-50/15 to-slate-50/5 px-8 py-8 backdrop-blur-sm
-      lg:grid-cols-3 lg:py-12">
+      <div className="grid mt-16 items-center rounded-xl border border-blue-50/20 bg-gradient-to-b from-slate-50/15 to-slate-50/5 px-8 py-8 backdrop-blur-sm lg:grid-cols-3 lg:py-12">
         <div>
           <div className="w-fit rounded-lg bg-blue-500/35 p-4 text-3xl">
            {slice.primary.icon && icons[slice.primary.icon]}
@@ -55,16 +55,22 @@ const Showcase: FC<ShowcaseProps> = ({ slice }) => {
           )}
         >
           <form className="w-full max-w-sm space-y-4">
-            <input
-              type="text"
-              placeholder="First Field"
-              className="w-full px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
-            <input
-              type="text"
-              placeholder="Second Field"
-              className="w-full px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
+            <div>
+              <label htmlFor="subject" className="block text-lg font-semibold mb-2">Subject</label>
+              <input
+                id="subject"
+                type="text"
+                className="w-full px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+            <div>
+              <label htmlFor="request" className="block text-lg font-semibold mb-2">Request Description</label>
+              <textarea
+                id="request"
+                rows={6}
+                className="w-full px-4 py-2 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+              />
+            </div>
             <ButtonLink field={slice.primary.buttonlink} className="mt-6">
               {slice.primary.buttontext || "Submit"}
             </ButtonLink>
@@ -73,6 +79,7 @@ const Showcase: FC<ShowcaseProps> = ({ slice }) => {
       </div>
 
     </Bounded>
+    </div>
   );
 };
 
