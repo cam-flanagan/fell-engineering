@@ -749,6 +749,16 @@ export interface ShowcaseSliceDefaultPrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * image field in *Showcase → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
 }
 
 /**
@@ -833,6 +843,16 @@ export interface ShowcaseSliceReversePrimary {
     prismic.FieldState,
     never
   >;
+
+  /**
+   * image field in *Showcase → Reverse → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: showcase.reverse.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
 }
 
 /**
